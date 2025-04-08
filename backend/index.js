@@ -16,6 +16,9 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cl
     console.log(error);
 })
 
+const authRoutes = require("./routes/auth.routes.js");
+app.use('/api/auth', authRoutes);
+
 app.get('/', async(req, res) =>{
     res.send("Loop Talk server is running");
 })
