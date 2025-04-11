@@ -1,15 +1,18 @@
 const User = require("../models/user.model.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { errorHandler } = require("../utils/error.js");
 
-const signup = async(req, res) =>{
+const signup = async(req, res, next) =>{
     const {userName, email, password, confirmPassword, gender} = req.body;
-    const validUser = await User.findOne({email});
+    // console.log(email)
+    const validUser = await User.findOne({email: email});
     if(validUser){
-        return res.status(400).send({message: "User already exit"});
+        return next(errorHandler(400, "User already exit"));
+        // return res.status(400).send({message: "exit"})
     }
     if(password !== confirmPassword){
-        return res.status(400).send({message: "Password don't match"});
+        return next(errorHandler(400, "Password don't match"));
     }
     const hashedPassword = bcrypt.hashSync(password, 10);
     const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${userName}`;
@@ -22,7 +25,7 @@ const signup = async(req, res) =>{
         profilePic: gender === "male" ? boyProfilePic : girlProfilePic
     })
     try {
-        const token = jwt.sign({id: newUser._id}, process.env.JWT_SECRET, {expiresIn: "500h"});
+        const token = jwt.sign({id: newUser._id}, process.env.JWT_SECRET, {expiresIn: "50h"});
         res.cookie("token", token, {
             httpOnly: true
         }).status(201).send({
@@ -32,13 +35,34 @@ const signup = async(req, res) =>{
             profilePic: newUser.profilePic
         })
     } catch (error) {
-        console.log(`Error is ${error}`);
-        res.status(500).send({message: "Internal server error"});
+        next(error);
     }
     const result = await newUser.save();
 }
-const signin = (req, res) =>{
 
+const signin = async(req, res, next) =>{
+ try {
+    const {email, password} = req.body;
+    const validUser = await User.findOne({email: email});
+    if(!validUser){
+        return next(errorHandler(404, "User not found"));
+    }
+    const validPassword = bcrypt.compareSync(password, validUser.password);
+    if(!validPassword){
+        return next(errorHandler(401, "Wrong creadentials"));
+    }
+    const token = jwt.sign({id: validUser._id}, process.env.JWT_SECRET, {expiresIn: "50h"});
+    res.cookie("token", token, {
+        httpOnly: true
+    }).status(200).send({
+        id: validUser._id,
+        userName: validUser.userName,
+        gender: validUser.gender,
+        profilePic: validUser.profilePic
+    })
+ } catch (error) {
+    next(error)
+ }
 }
 const logout = (req, res) =>{
 
