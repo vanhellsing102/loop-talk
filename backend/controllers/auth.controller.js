@@ -64,8 +64,13 @@ const signin = async(req, res, next) =>{
     next(error)
  }
 }
-const logout = (req, res) =>{
-
+const logout = (req, res, next) =>{
+    try {
+        res.clearCookie("token");
+        res.status(200).send({message: "User has been logged out successfully"});
+    } catch (error) {
+        next(error);
+    }
 }
 
 module.exports = {
