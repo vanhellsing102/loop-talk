@@ -5,7 +5,7 @@ import Conversations from './Conversations';
 
 const Sidebar = () => {
     return (
-        <div className='bg-gray-300 p-7 sm:h-[350px] overflow-auto md:h-[400px] rounded-xl'>
+        <div className='p-7 sm:h-[350px] overflow-auto md:h-[400px] bg-gray-300 rounded-tl-xl rounded-bl-xl'>
             <SearchInput></SearchInput>
             <div className='divider'></div>
             <Conversations></Conversations>
