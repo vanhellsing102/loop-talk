@@ -5,8 +5,9 @@ const { errorHandler } = require("../utils/error.js");
 
 const signup = async(req, res, next) =>{
     const {userName, email, password, confirmPassword, gender} = req.body;
-    // console.log(email)
-    const validUser = await User.findOne({email: email});
+    // console.log(userName, email, password, confirmPassword, gender);
+    let validUser = await User.findOne({email: email});
+    // console.log(validUser)
     if(validUser){
         return next(errorHandler(400, "User already exit"));
         // return res.status(400).send({message: "exit"})
