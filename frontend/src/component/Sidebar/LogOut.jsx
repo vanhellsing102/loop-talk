@@ -1,11 +1,11 @@
 import { CiLogout } from "react-icons/ci";
-import UseAixosPublic from "../../hooks/useAixosPublic";
+import useAixosPublic from "../../hooks/useAixosPublic";
 import { useAuthContext } from "../../ContextProviders/AuthContextProvider";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const LogOut = () => {
-    const axiosPublic = UseAixosPublic();
+    const axiosPublic = useAixosPublic();
     const {setAuthUser} = useAuthContext();
     const navigate = useNavigate();
 
@@ -13,7 +13,7 @@ const LogOut = () => {
         // console.log("logout");
         axiosPublic.get("/auth/logout")
         .then(res =>{
-            console.log(res.data);
+            // console.log(res.data);
             if(res.data){
                 localStorage.removeItem("user");
                 setAuthUser(null);

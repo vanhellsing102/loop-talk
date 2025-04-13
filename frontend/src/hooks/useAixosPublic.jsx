@@ -4,8 +4,8 @@ const axiosPublic = axios.create({
     baseURL: "http://localhost:3000/api"
 })
 
-const UseAixosPublic = () => {
+const useAixosPublic = () => {
     return axiosPublic;
 };
 
-export default UseAixosPublic;
+export default useAixosPublic;
