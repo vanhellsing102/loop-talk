@@ -15,12 +15,15 @@ const SignIn = () => {
         const form = new FormData(e.target);
         const email = form.get("email");
         const password = form.get("password");
+        if(!email || !password){
+            return toast.error("Please fill all the fields");
+        }
         const loggedInUser = {
             email, password
         }
         axiosPublic.post('/auth/signin', loggedInUser)
         .then(res =>{
-            // console.log(res.data);
+            // console.log(res.error);
             if(res.data){
                 localStorage.setItem("user", JSON.stringify(res.data));
                 setAuthUser(res.data);

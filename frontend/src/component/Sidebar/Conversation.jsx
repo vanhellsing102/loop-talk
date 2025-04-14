@@ -1,15 +1,18 @@
-import image from "../../assets/images/download.png";
+import useConversation from "../../zustand/useConversation";
 
-const Conversation = () => {
+ const Conversation = ({conversation}) => {
+  const {selectedConversation, setSelectedConversation} = useConversation();
+  const isSelected = conversation?._id === selectedConversation?._id;
+
   return (
     <>
-      <div className="flex items-center cursor-pointer hover:bg-blue-500 px-2 rounded-sm gap-7 border-b py-2 border-slate-400">
+      <div onClick={() =>setSelectedConversation(conversation)} className={`flex items-center cursor-pointer hover:bg-blue-500 px-2 rounded-sm gap-7 border-b py-2 border-slate-400 ${isSelected ? "bg-blue-500" : ""}`}>
         <div className="avatar avatar-online">
           <div className="w-10 rounded-full">
-            <img className="" src={image} alt="" />
+            <img className="" src={conversation?.profilePic} alt="" />
           </div>
         </div>
-        <h2 className="font-semibold text-lg">Md Murad</h2>
+        <h2 className="font-semibold text-lg">{conversation?.userName}</h2>
       </div>
     </>
   );
