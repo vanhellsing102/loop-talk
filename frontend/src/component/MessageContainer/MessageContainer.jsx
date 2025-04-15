@@ -18,8 +18,8 @@ const MessageContainer = () => {
             {
                 selectedConversation 
                 ?
-                <div className='flex flex-col  sm:h-[350px] overflow-auto md:h-[400px] '>
-                    <div className='bg-slate-500 text-white text-sm py-2 px-5 fixed md:w-[500px] z-10 rounded-tr-xl'>
+                <div className='flex flex-col justify-between sm:h-[350px] overflow-auto md:h-[400px] '>
+                    <div className='bg-slate-500 text-white text-sm py-2 px-5 md:w-[500px] z-10 rounded-tr-xl'>
                         <p>To: <span className='capitalize'>{selectedConversation?.userName}</span></p>
                     </div>
                     <div className='p-3 overflow-auto'>
