@@ -1,11 +1,11 @@
 import toast from 'react-hot-toast';
 import { Link, Navigate } from 'react-router-dom'
 import { useAuthContext } from '../ContextProviders/AuthContextProvider';
-import useAixosPublic from '../hooks/useAixosPublic';
+import useAxiosPublic from '../hooks/useAxiosPublic';
 
 const SignUp = () => {
   const {authUser, setAuthUser} = useAuthContext();
-  const axiosPublic = useAixosPublic();
+  const axiosPublic = useAxiosPublic();
 
   const handleSignUp = e =>{
     e.preventDefault();

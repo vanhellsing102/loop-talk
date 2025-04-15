@@ -14,20 +14,20 @@ const MessageContainer = () => {
     }, [setSelectedConversation]);
 
     return (
-        <div className='md:w-[500px] sm:h-[350px] overflow-auto md:h-[400px] rounded-tr-xl rounded-br-xl bg-blue-200 relative flex flex-col'>
+        <div className='bg-blue-200 rounded-tr-xl rounded-br-xl md:w-[500px]'>
             {
                 selectedConversation 
                 ?
-                <div>
+                <div className='flex flex-col  sm:h-[350px] overflow-auto md:h-[400px] '>
                     <div className='bg-slate-500 text-white text-sm py-2 px-5 fixed md:w-[500px] z-10 rounded-tr-xl'>
-                    <p>To: <span className='capitalize'>{selectedConversation?.userName}</span></p>
-                </div>
-                <div className='p-3 overflow-auto'>
-                    <Messages></Messages>
-                </div>
-                <div className=''>
-                    <MessageInput></MessageInput>
-                </div>
+                        <p>To: <span className='capitalize'>{selectedConversation?.userName}</span></p>
+                    </div>
+                    <div className='p-3 overflow-auto'>
+                        <Messages></Messages>
+                    </div>
+                    <div className=''>
+                        <MessageInput></MessageInput>
+                    </div>
                 </div>
                 :
                 <div className='flex items-center justify-center flex-col h-full gap-1'>

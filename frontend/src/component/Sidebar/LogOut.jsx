@@ -1,11 +1,11 @@
 import { CiLogout } from "react-icons/ci";
-import useAixosPublic from "../../hooks/useAixosPublic";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useAuthContext } from "../../ContextProviders/AuthContextProvider";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const LogOut = () => {
-    const axiosPublic = useAixosPublic();
+    const axiosPublic = useAxiosPublic();
     const {setAuthUser} = useAuthContext();
     const navigate = useNavigate();
 

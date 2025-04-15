@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import useAixosPublic from '../hooks/useAixosPublic';
+import useAxiosPublic from '../hooks/useAxiosPublic';
 import toast from "react-hot-toast";
 import { useAuthContext } from '../ContextProviders/AuthContextProvider';
 
 
 const SignIn = () => {
-    const axiosPublic = useAixosPublic();
+    const axiosPublic = useAxiosPublic();
     const {setAuthUser} = useAuthContext();
     const navigate = useNavigate();
 
