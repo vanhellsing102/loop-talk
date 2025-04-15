@@ -2,12 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "./useAxiosPublic";
 
 
-const useGetConversations = (id) => {
+const useGetConversations = () => {
     const aixosPublic = useAxiosPublic();
     const {data: conversations = []} = useQuery({
-        queryKey: ['conversation', id],
+        queryKey: ['conversations'],
         queryFn: async() =>{
-            const res = await aixosPublic.get(`/users/${id}`);
+            const res = await aixosPublic.get(`/users`);
             return res.data;
         }
     })

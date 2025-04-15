@@ -3,11 +3,13 @@ import toast from "react-hot-toast";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useConversation from "../../zustand/useConversation";
 import { useState } from "react";
+import useGetMessages from "../../hooks/useGetMessages";
 
 const MessageInput = () => {
     const axiosPublic = useAxiosPublic();
     const {setMessages, selectedConversation} = useConversation();
     const [inputMessage, setInputMessage] = useState("");
+    const {refetch} = useGetMessages();
     // console.log(message)
     // console.log(selectedConversation._id)
 
@@ -24,6 +26,7 @@ const MessageInput = () => {
             // console.log(res.data);
             setMessages("");
             setInputMessage("");
+            refetch();
         })
         
     }

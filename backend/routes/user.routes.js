@@ -3,6 +3,6 @@ const verifyToken = require("../middlewares/verify.js");
 const getUserForSideBar = require("../controllers/user.controller.js");
 const router = express.Router();
 
-router.get('/:id', getUserForSideBar);
+router.get('/', verifyToken, getUserForSideBar);
 
 module.exports = router;

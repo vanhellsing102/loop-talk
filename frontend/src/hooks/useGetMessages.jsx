@@ -7,14 +7,14 @@ const useGetMessages = () => {
     const {selectedConversation} = useConversation();
     const id = selectedConversation?._id;
 
-    const {data: messages = []} = useQuery({
+    const {data: messages = [], refetch} = useQuery({
         queryKey: ["messages", id],
         queryFn: async() =>{
             const res = await axiosPublic.get(`/messages/get/${id}`)
             return res.data;
         }
     })
-    return {messages};
+    return {messages, refetch};
 };
 
 export default useGetMessages;

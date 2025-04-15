@@ -1,11 +1,9 @@
 import Conversation from './Conversation';
 import useGetConversations from '../../hooks/useGetConversations';
-import { useAuthContext } from '../../ContextProviders/AuthContextProvider';
 
 const Conversations = () => {
-    const {authUser} = useAuthContext();
-    const {conversations} = useGetConversations(authUser?.id);
-    // console.log(conversations)
+    const {conversations} = useGetConversations();
+    // console.log(conversations);
     return (
         <div className='flex flex-col'>
             {
