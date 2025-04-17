@@ -1,8 +1,8 @@
-const express = require("express");
-const verifyToken = require("../middlewares/verify.js");
-const getUserForSideBar = require("../controllers/user.controller.js");
+import express from "express";
+import verifyToken from "../middlewares/verify.js";
+import getUserForSideBar from "../controllers/user.controller.js";
 const router = express.Router();
 
 router.get('/', verifyToken, getUserForSideBar);
 
-module.exports = router;
+export default router;

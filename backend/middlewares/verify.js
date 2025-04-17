@@ -1,5 +1,5 @@
-const { errorHandler } = require("../utils/error.js");
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
+import errorHandler from "../utils/error.js";
 
 const verifyToken = async(req, res, next) =>{
     try {
@@ -20,4 +20,4 @@ const verifyToken = async(req, res, next) =>{
     } 
 }
 
-module.exports = verifyToken;
+export default verifyToken;

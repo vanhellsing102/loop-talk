@@ -1,7 +1,7 @@
-const User = require("../models/user.model.js");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const { errorHandler } = require("../utils/error.js");
+import User from "../models/user.model.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import errorHandler from "../utils/error.js";
 
 const signup = async(req, res, next) =>{
     const {userName, email, password, confirmPassword, gender} = req.body;
@@ -55,7 +55,7 @@ const signin = async(req, res, next) =>{
     if(!validPassword){
         return next(errorHandler(401, "Wrong creadentials"));
     }
-    const token = jwt.sign({id: validUser._id}, process.env.JWT_SECRET, {expiresIn: "9h"});
+    const token = jwt.sign({id: validUser._id}, process.env.JWT_SECRET, {expiresIn: "50h"});
     res.cookie("token", token, {
         httpOnly: true,
         secure: false,
@@ -79,8 +79,4 @@ const logout = (req, res, next) =>{
     }
 }
 
-module.exports = {
-    signup,
-    signin,
-    logout
-}
+export { signup, signin, logout };

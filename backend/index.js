@@ -1,9 +1,12 @@
-require("dotenv").config();
-const express = require("express");
-const app = express();
-const cors = require("cors");
-const mongoose = require("mongoose");
-const cookieParser = require("cookie-parser");
+// require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
+import express from "express";
+// const app = express();
+import { server, app } from "./socket/socket.js";
+import cors from "cors";
+import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
 const port = process.env.PORT || 3000;
 
 app.use(cors({
@@ -22,9 +25,9 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cl
     console.log(error);
 })
 
-const authRoutes = require("./routes/auth.routes.js");
-const messageRoutes = require("./routes/message.routes.js");
-const userRoutes = require("./routes/user.routes.js");
+import authRoutes from "./routes/auth.routes.js";
+import messageRoutes from "./routes/message.routes.js";
+import userRoutes from "./routes/user.routes.js";
 app.use('/api/auth', authRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/users', userRoutes);
@@ -32,7 +35,7 @@ app.use('/api/users', userRoutes);
 app.get('/', async(req, res) =>{
     res.send("Loop Talk server is running");
 })
-app.listen(port, () =>{
+server.listen(port, () =>{
     console.log(`Server is running on Port ${port}`);
 })
 

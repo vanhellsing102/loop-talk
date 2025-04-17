@@ -1,5 +1,5 @@
-const Conversation = require("../models/conversation.model.js");
-const Message = require("../models/message.model.js");
+import Conversation from "../models/conversation.model.js";
+import Message from "../models/message.model.js";
 
 const sendMessage = async(req, res, next) =>{
     try {
@@ -53,7 +53,4 @@ const getMessage = async(req, res, next) =>{
 }
 
 
-module.exports = {
-    sendMessage,
-    getMessage
-}
+export { sendMessage, getMessage}
