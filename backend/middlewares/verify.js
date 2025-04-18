@@ -4,7 +4,7 @@ import errorHandler from "../utils/error.js";
 const verifyToken = async(req, res, next) =>{
     try {
         const token = req.cookies.token;
-        console.log(token);
+        // console.log(token);
         if(!token){
             return next(errorHandler(401, "Unauthorized"))
         }
