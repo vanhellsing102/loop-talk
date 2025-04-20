@@ -12,15 +12,15 @@ const queryClient  = new QueryClient()
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <div className='min-h-screen flex items-center justify-center'>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
       <AuthContextProvider>
         <SocketContextProvider>
-          <RouterProvider router={router}></RouterProvider>
-          <Toaster />
+          <div className='min-h-screen flex items-center justify-center'>
+            <RouterProvider router={router}></RouterProvider>
+            <Toaster />
+          </div>
         </SocketContextProvider>
       </AuthContextProvider>
-      </QueryClientProvider>
-    </div>
+    </QueryClientProvider>
   </StrictMode>,
 )

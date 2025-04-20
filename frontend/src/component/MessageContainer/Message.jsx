@@ -1,4 +1,5 @@
 import { useAuthContext } from '../../ContextProviders/AuthContextProvider';
+// import useListenMessages from '../../hooks/useListenMessages';
 import useConversation from '../../zustand/useConversation';
 import moment from "moment";
 
@@ -8,6 +9,7 @@ const Message = ({message}) => {
     const sendMessageFromMe = authUser?.id === message?.senderId;
     const sendMessageTime = moment(message.createdAt).format("HH:mm")
     // console.log(sendMessageTime);
+    // useListenMessages();
 
     return (
         <div className={`chat ${sendMessageFromMe ? "chat-end" : "chat-start"}`}>
